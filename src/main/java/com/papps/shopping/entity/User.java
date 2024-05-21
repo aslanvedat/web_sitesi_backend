@@ -17,6 +17,9 @@ private  Long id;
 private String name;
     @Column(name = "userMail")
 private String emailAddress;
+    @Column(name = "password")
+    private String password;
+
 
     @OneToMany(cascade = CascadeType.ALL)
     private List<ContactInfo>contacts;//todo one to many
