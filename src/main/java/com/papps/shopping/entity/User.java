@@ -1,6 +1,8 @@
 package com.papps.shopping.entity;
 
 import java.util.List;
+
+import com.papps.shopping.dto.request.UserRequestDto;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -19,6 +21,23 @@ private String name;
 private String emailAddress;
     @Column(name = "password")
     private String password;
+
+    public User() {
+
+    }
+
+    public User(UserRequestDto userRequestDto) {
+        this.name = userRequestDto.getName();
+        this.emailAddress = userRequestDto.getMail();
+        this.password=userRequestDto.getMail();
+    }
+
+    public User(String name, String mail, String password) {
+        this.name = name;
+        this.emailAddress= mail;
+        this.password=password;
+    }
+
 
 
     @OneToMany(cascade = CascadeType.ALL)

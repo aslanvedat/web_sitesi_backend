@@ -10,7 +10,7 @@ public interface UserService {
 
     Collection<User> findAll();
 
-    User findById(long id) throws Exception;
+    User findById(long id) ;
 
     UserResponseDto save(UserRequestDto request);
 
@@ -18,7 +18,7 @@ public interface UserService {
 
     UserResponseDto update(long user_id, UserRequestDto requestDTO);
 
-    UserResponseDto deleteById(long id);
+    UserResponseDto deleteById(long id) ;
 
     boolean existByMail(String mail);
 
