@@ -2,22 +2,27 @@ package com.papps.shopping.entity;
 
 import jakarta.persistence.*;
 import lombok.Data;
+import org.springframework.data.annotation.CreatedBy;
+import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.time.LocalDateTime;
 
 @Data
-public abstract class Auditable extends SoftDeleteSupport{
+@MappedSuperclass
+@EntityListeners(AuditingEntityListener.class)
+public abstract class Auditable {
 
-@Column(name = "createdBy")
-    private User createdBy;
-@Column(name = "createdTime")
-    private LocalDateTime CreatedTime;
+    @CreatedBy
+    protected String createdBy;
 
-@Column(name = "modifiedTime")
-    private LocalDateTime modifiedTime;
+    @Column(name = "createdTime")
+    protected LocalDateTime CreatedTime;
 
-@Column(name = "modifiedBy")
-    private User modifiedBy;
+    @Column(name = "modifiedTime")
+    protected LocalDateTime modifiedTime;
 
+    @LastModifiedDate
+    protected String modifiedBy;
 
 }
