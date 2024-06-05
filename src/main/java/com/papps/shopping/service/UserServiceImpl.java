@@ -5,12 +5,15 @@ import com.papps.shopping.dto.response.UserResponseDto;
 import com.papps.shopping.entity.User;
 import com.papps.shopping.exception.ApiRequestException;
 import com.papps.shopping.repostory.UserRepository;
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
 
 import java.util.Collection;
 import java.util.Optional;
-
+@Service
+@RequiredArgsConstructor
 public class UserServiceImpl implements UserService {
-    private UserRepository userRepository;
+    private final UserRepository userRepository;
 
     @Override
     public Collection<User> findAll() {

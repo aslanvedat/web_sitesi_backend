@@ -12,6 +12,5 @@ public class Role {
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
 
-    @Column(name = "roleName")
     private String name;
 }

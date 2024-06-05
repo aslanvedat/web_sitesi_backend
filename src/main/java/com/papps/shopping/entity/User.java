@@ -4,29 +4,28 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.papps.shopping.dto.request.UserRequestDto;
 import jakarta.persistence.*;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import org.hibernate.annotations.SQLDelete;
 
 import java.util.List;
 
+@EqualsAndHashCode(callSuper = true)
 @Data
 @Entity
-@Table(name = "\"User\"", uniqueConstraints = {@UniqueConstraint(columnNames = {"deleted","deletionToken"})})
-@SQLDelete(sql = "UPDATE \"User\" SET deleted=yes, deletionToken = id WHERE id=?")
+@Table(name = "\"User\"", uniqueConstraints = {@UniqueConstraint(columnNames = {"deleted", "deletionToken"})})
+@SQLDelete(sql = "UPDATE \"user\" SET deleted = true , deletion_token = id WHERE id=?")
 public class User extends Auditable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
 
-    @Column(name = "userName")
     private String name;
-    @Column(name = "mail")
     private String mail;
-    @Column(name = "password")
     private String password;
 
     @JsonIgnore
-    @Column(name="deletionToken")
+    @Column(name = "deletionToken")
     private String deletionToken;
 
     @JsonIgnore

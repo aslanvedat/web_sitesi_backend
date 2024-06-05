@@ -3,11 +3,15 @@ package com.papps.shopping.service;
 import com.papps.shopping.entity.Role;
 import com.papps.shopping.exception.ApiRequestException;
 import com.papps.shopping.repostory.RoleRepository;
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
 
 import java.util.Collection;
 
+@RequiredArgsConstructor
+@Service
 public class RoleServiceImpl implements RoleService {
-    private RoleRepository repository;
+    private final RoleRepository repository;
 
     @Override
     public Collection<Role> saveRoller(Collection<Role> roles) {
@@ -26,13 +30,13 @@ public class RoleServiceImpl implements RoleService {
 
     @Override
     public Role saveRole(Role role) {
-        if(role==null || role.getName().isEmpty()){
+        if (role == null || role.getName().isEmpty()) {
             throw new ApiRequestException("Roles cannot be null or name cannot be empty ");
         }
-        if (existByName(role.getName())){
+        if (existByName(role.getName())) {
             throw new ApiRequestException("Role already exist!");
         }
-        var result=repository.save(role);
+        var result = repository.save(role);
         repository.flush();
 
         return result;

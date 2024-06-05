@@ -3,6 +3,7 @@ import com.papps.shopping.dto.request.UserRequestDto;
 import com.papps.shopping.dto.response.UserResponseDto;
 import com.papps.shopping.entity.User;
 import com.papps.shopping.service.UserService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,7 +16,7 @@ import java.util.Collection;
 @RequestMapping("/user")
 public class UserController {
 
-    private UserService userService;
+    private final UserService userService;
 
 
     @GetMapping("/")
@@ -24,7 +25,7 @@ public class UserController {
 
     @CrossOrigin//buna bakacam
     @PostMapping("/")
-public ResponseEntity<UserResponseDto> save(@RequestBody UserRequestDto userRequestDto)//requestbody onune valid gelebilir
+public ResponseEntity<UserResponseDto> save(@Valid @RequestBody UserRequestDto userRequestDto)//requestbody onune valid gelebilir
     {
 var saveUser=userService.save(userRequestDto);
 return  new ResponseEntity<>(saveUser, HttpStatus.CREATED);
