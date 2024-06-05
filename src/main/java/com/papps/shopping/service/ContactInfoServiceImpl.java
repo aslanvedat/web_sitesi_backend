@@ -46,4 +46,17 @@ public class ContactInfoServiceImpl implements ContactInfoService {
         contactInfoRepository.delete(result);
         return result;
     }
+
+    @Override
+    public ContactInfo updateContactInfo(ContactInfoRequestDto contactInfoRequestDto, long id) {
+        var contactInfo = findById(id);
+        contactInfo.setName(contactInfoRequestDto.getName());
+        contactInfo.setAddressName(contactInfoRequestDto.getAddressName());
+        contactInfo.setFullAddress(contactInfoRequestDto.getFullAddress());
+        contactInfo.setPostaCode(contactInfoRequestDto.getPostaCode());
+        contactInfo.setCountry(contactInfoRequestDto.getCountry());
+        contactInfo.setPhoneNumber(contactInfoRequestDto.getPhoneNumber());
+        contactInfo.setIsDefault(contactInfoRequestDto.getIsDefault());//todo unique kontrolu yapilacak
+        return contactInfoRepository.save(contactInfo);
+    }
 }

@@ -11,4 +11,6 @@ public interface ContactInfoService {
     ContactInfoResponseDto viewContactInfo(long id);
 
     ContactInfo deleteById(long id);
+
+    ContactInfo updateContactInfo(ContactInfoRequestDto contactInfoRequestDto, long id);
 }

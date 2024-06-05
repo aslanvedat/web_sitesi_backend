@@ -34,9 +34,15 @@ public class ContactInfoController {
 
 
     @DeleteMapping("/id")
-    public ResponseEntity<ContactInfo> delete(Long id) {
+    public ResponseEntity<ContactInfo> delete(@PathVariable Long id) {
         var result = contactInfoService.deleteById(id);
         return new ResponseEntity<>(result, HttpStatus.OK);
 
+    }
+
+    @PutMapping("/id")
+    public ResponseEntity<ContactInfo> update(@RequestBody ContactInfoRequestDto input, @PathVariable Long id) {
+        var result = contactInfoService.updateContactInfo(input, id);
+        return new ResponseEntity<>(result, HttpStatus.OK);
     }
 }
