@@ -25,7 +25,6 @@ public class User extends Auditable {
     private String password;
 
     @JsonIgnore
-    @Column(name = "deletionToken")
     private String deletionToken;
 
     @JsonIgnore

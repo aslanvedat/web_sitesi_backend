@@ -11,8 +11,8 @@ import java.util.List;
 @EqualsAndHashCode(callSuper = true)
 @Data
 @Entity
-@Table(name = "\"Order\"", uniqueConstraints = {@UniqueConstraint(columnNames = {"deleted", "deletionToken"})})
-@SQLDelete(sql = "UPDATE \"Order\" SET deleted=yes, deletionToken = id WHERE id=?")
+@Table(name = "\"Order\"", uniqueConstraints = {@UniqueConstraint(columnNames = {"deleted", "deletion_token"})})
+@SQLDelete(sql = "UPDATE \"order\" SET deleted=true, deletion_token = id WHERE id=?")
 public class Order extends Auditable {
 
     @Id

@@ -15,6 +15,7 @@ import java.util.Optional;
 public class ContactInfoServiceImpl implements ContactInfoService {
     private final ContactInfoRepository contactInfoRepository;
 
+    @Override
     public ContactInfo findById(long id) {
         Optional<ContactInfo> contactInfo = contactInfoRepository.findById(id);
         return contactInfo.orElseThrow(() -> new ApiRequestException("contact info is not found"));

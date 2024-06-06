@@ -3,12 +3,14 @@ package com.papps.shopping.entity;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import org.hibernate.annotations.SQLDelete;
 
 @Data
+@EqualsAndHashCode(callSuper = false)
 @Entity
-@Table(name = "Product", uniqueConstraints = {@UniqueConstraint(columnNames = {"deleted", "deletionToken"})})
-@SQLDelete(sql = "UPDATE Product SET deleted=yes, deletionToken = id WHERE id=?")
+@Table(name = "product", uniqueConstraints = {@UniqueConstraint(columnNames = {"deleted", "deletion_token"})})
+@SQLDelete(sql = "UPDATE product SET deleted=true, deletion_token = id WHERE id=?")
 public class Product extends Auditable {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
@@ -25,7 +27,6 @@ public class Product extends Auditable {
     private boolean isShow;
 
     @JsonIgnore
-    @Column(name = "deletionToken")
     private String deletionToken;
 
     @JsonIgnore

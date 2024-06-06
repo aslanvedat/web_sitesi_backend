@@ -4,7 +4,6 @@ package com.papps.shopping.controller;
 import com.papps.shopping.dto.request.ContactInfoRequestDto;
 import com.papps.shopping.dto.response.ContactInfoResponseDto;
 import com.papps.shopping.entity.ContactInfo;
-import com.papps.shopping.repostory.ContactInfoRepository;
 import com.papps.shopping.service.ContactInfoService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -17,7 +16,6 @@ import org.springframework.web.bind.annotation.*;
 public class ContactInfoController {
 
     private final ContactInfoService contactInfoService;
-    private final ContactInfoRepository contactInfoRepository;
 
     @PostMapping("/")
     public ResponseEntity<ContactInfo> save(@RequestBody ContactInfoRequestDto input) {

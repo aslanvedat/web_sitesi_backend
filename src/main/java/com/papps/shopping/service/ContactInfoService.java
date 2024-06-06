@@ -6,6 +6,8 @@ import com.papps.shopping.entity.ContactInfo;
 
 public interface ContactInfoService {
 
+    ContactInfo findById(long id);
+
     ContactInfo save(ContactInfoRequestDto contactInfoRequestDto);
 
     ContactInfoResponseDto viewContactInfo(long id);
