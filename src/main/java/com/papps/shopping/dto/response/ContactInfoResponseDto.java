@@ -9,7 +9,7 @@ public class ContactInfoResponseDto {
 
     private String name;
 
-    private String AddressName;
+    private String addressName;
 
     private String fullAddress;
 
@@ -26,7 +26,7 @@ public class ContactInfoResponseDto {
     public ContactInfoResponseDto(ContactInfo contactInfo) {
         this.id = contactInfo.getId();
         this.name = contactInfo.getName();
-        this.AddressName = contactInfo.getAddressName();
+        this.addressName = contactInfo.getAddressName();
         this.fullAddress = contactInfo.getFullAddress();
         this.postaCode = contactInfo.getPostaCode();
         this.country = contactInfo.getCountry();

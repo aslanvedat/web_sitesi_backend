@@ -12,7 +12,7 @@ public class ContactInfoRequestDto {
     private String name;
 
     @NotBlank(message = "Name cannot be empty")
-    private String AddressName;
+    private String addressName;
 
     @NotBlank(message = "Name cannot be empty")
     private String fullAddress;

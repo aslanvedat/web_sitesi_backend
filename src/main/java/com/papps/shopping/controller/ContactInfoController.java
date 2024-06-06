@@ -19,7 +19,7 @@ public class ContactInfoController {
     private final ContactInfoService contactInfoService;
     private final ContactInfoRepository contactInfoRepository;
 
-    @PostMapping
+    @PostMapping("/")
     public ResponseEntity<ContactInfo> save(@RequestBody ContactInfoRequestDto input) {
         var saveContactInfo = contactInfoService.save(input);
         return new ResponseEntity<>(saveContactInfo, HttpStatus.CREATED);
@@ -33,14 +33,14 @@ public class ContactInfoController {
     }
 
 
-    @DeleteMapping("/id")
+    @DeleteMapping("/{id}")
     public ResponseEntity<ContactInfo> delete(@PathVariable Long id) {
         var result = contactInfoService.deleteById(id);
         return new ResponseEntity<>(result, HttpStatus.OK);
 
     }
 
-    @PutMapping("/id")
+    @PutMapping("/{id}")
     public ResponseEntity<ContactInfo> update(@RequestBody ContactInfoRequestDto input, @PathVariable Long id) {
         var result = contactInfoService.updateContactInfo(input, id);
         return new ResponseEntity<>(result, HttpStatus.OK);

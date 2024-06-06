@@ -12,7 +12,7 @@ import java.util.List;
 @EqualsAndHashCode(callSuper = true)
 @Data
 @Entity
-@Table(name = "\"User\"", uniqueConstraints = {@UniqueConstraint(columnNames = {"deleted", "deletionToken"})})
+@Table(name = "\"User\"", uniqueConstraints = {@UniqueConstraint(columnNames = {"deleted", "deletion_token"})})
 @SQLDelete(sql = "UPDATE \"user\" SET deleted = true , deletion_token = id WHERE id=?")
 public class User extends Auditable {
 

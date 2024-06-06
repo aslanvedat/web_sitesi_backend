@@ -9,8 +9,8 @@ import org.hibernate.annotations.SQLDelete;
 @Data
 @EqualsAndHashCode(callSuper = false)
 @Entity
-@Table(name = "ContactInfo", uniqueConstraints = {@UniqueConstraint(columnNames = {"deleted", "deletionToken"})})
-@SQLDelete(sql = "UPDATE ContactInfo SET deleted=true, deletionToken = id WHERE id=?")
+@Table(name = "contact_info", uniqueConstraints = {@UniqueConstraint(columnNames = {"deleted", "deletion_token"})})
+@SQLDelete(sql = "UPDATE contact_info SET deleted=true, deletion_token = id WHERE id=?")
 public class ContactInfo extends Auditable {
 
     @Id
@@ -19,7 +19,7 @@ public class ContactInfo extends Auditable {
 
     private String name;
 
-    private String AddressName;
+    private String addressName;
 
     private String fullAddress;
 
