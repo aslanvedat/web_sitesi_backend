@@ -24,7 +24,7 @@ public class Product extends Auditable {
 
     private float price;
 
-    private boolean isShow;
+    private boolean Show;
 
     @JsonIgnore
     private String deletionToken;

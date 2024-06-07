@@ -21,5 +21,5 @@ public class ProductRequestDto {
     private float price;
 
     @NotBlank(message = "Name cannot be empty")
-    private boolean isShow;
+    private boolean Show;
 }

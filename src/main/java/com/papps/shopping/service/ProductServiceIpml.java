@@ -8,6 +8,8 @@ import com.papps.shopping.repostory.ProductRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.Collection;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -18,12 +20,15 @@ public class ProductServiceIpml implements ProductService {
 
     @Override
     public Product save(ProductRequestDto input) {
+        if (productRepository.existsByName(input.getName())) {
+            throw new ApiRequestException("this product already exist!");
+        }
         Product product = new Product();
         product.setName(input.getName());
         product.setBarcode(input.getBarcode());
         product.setQuantity(input.getQuantity());
         product.setPrice(input.getPrice());
-        product.setShow(input.isShow());//todo burasi da response taki hatadan dolayi dogru calismiyor
+        product.setShow(input.isShow());
         return productRepository.save(product);
     }
 
@@ -31,6 +36,12 @@ public class ProductServiceIpml implements ProductService {
     public Product findById(long id) {
         Optional<Product> product = productRepository.findById(id);
         return product.orElseThrow(() -> new ApiRequestException("contact info is not found"));
+    }
+
+    @Override
+    public Collection<Product> findByIds(List<Long> ids) {
+        //todo bu method yazilacak!!!
+        return null;
     }
 
     @Override
@@ -43,14 +54,13 @@ public class ProductServiceIpml implements ProductService {
     public Product delete(long id) {
         var result = findById(id);
         productRepository.delete(result);
-        //     productRepository.deleteById(id);
 
         return result;
     }
 
     @Override
     public Product update(ProductRequestDto input, Long id) {
-        Product product = new Product();
+        Product product = findById(id);
         product.setName(input.getName());
         product.setBarcode(input.getBarcode());
         product.setQuantity(input.getQuantity());
@@ -58,4 +68,5 @@ public class ProductServiceIpml implements ProductService {
         product.setShow(input.isShow());//todo burasi da response taki hatadan dolayi dogru calismiyor
         return productRepository.save(product);
     }
+    //findbyids yazilacak
 }

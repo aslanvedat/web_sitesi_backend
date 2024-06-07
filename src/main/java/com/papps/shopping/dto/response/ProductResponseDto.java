@@ -15,7 +15,7 @@ public class ProductResponseDto {
 
     private float price;
 
-    private boolean isShow;
+    private boolean Show;
 
     public ProductResponseDto(Product product) {
         this.id = product.getId();
@@ -23,6 +23,6 @@ public class ProductResponseDto {
         this.barcode = product.getBarcode();
         this.quantity = product.getQuantity();
         this.price = product.getPrice();
-        this.isShow = product.isShow();//todo burada bi sorun var
+        this.Show = product.isShow();
     }
 }

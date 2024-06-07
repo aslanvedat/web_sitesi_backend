@@ -24,7 +24,7 @@ public class Order extends Auditable {
     private User user;
 
     @OneToMany(cascade = CascadeType.ALL)
-    private List<Product> products;//todo burasi one to many olacak
+    private List<Product> products;
 
     @OneToOne
     @JoinColumn(name = "contact_id")
