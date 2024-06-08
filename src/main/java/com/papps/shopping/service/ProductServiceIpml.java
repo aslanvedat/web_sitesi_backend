@@ -8,7 +8,6 @@ import com.papps.shopping.repostory.ProductRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
 
@@ -39,9 +38,9 @@ public class ProductServiceIpml implements ProductService {
     }
 
     @Override
-    public Collection<Product> findByIds(List<Long> ids) {
-        //todo bu method yazilacak!!!
-        return null;
+    public List<Product> findByIds(List<Long> ids) {
+        return productRepository.findAllById(ids);
+
     }
 
     @Override
@@ -65,8 +64,8 @@ public class ProductServiceIpml implements ProductService {
         product.setBarcode(input.getBarcode());
         product.setQuantity(input.getQuantity());
         product.setPrice(input.getPrice());
-        product.setShow(input.isShow());//todo burasi da response taki hatadan dolayi dogru calismiyor
+        product.setShow(input.isShow());
         return productRepository.save(product);
     }
-    //findbyids yazilacak
+
 }

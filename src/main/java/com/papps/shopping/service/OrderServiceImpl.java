@@ -3,13 +3,11 @@ package com.papps.shopping.service;
 import com.papps.shopping.dto.request.OrderRequestDto;
 import com.papps.shopping.dto.response.OrderResponseDto;
 import com.papps.shopping.entity.Order;
-import com.papps.shopping.entity.Product;
 import com.papps.shopping.exception.ApiRequestException;
 import com.papps.shopping.repostory.OrderRepostitory;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -17,6 +15,7 @@ import java.util.Optional;
 public class OrderServiceImpl implements OrderService {
     private final OrderRepostitory orderRepostitory;
     private final ProductService productService;
+    private final ContactInfoService contactInfoService;
 
     @Override
     public Order findById(long id) {
@@ -28,10 +27,11 @@ public class OrderServiceImpl implements OrderService {
     public Order save(OrderRequestDto input) {
         Order order = new Order();
         order.setAmaount(input.getAmaount());
-        order.setContact(input.getContact());
+        var contactInfo = contactInfoService.findById(input.getContactId());
+        order.setContact(contactInfo);
         var result = input.getProductIds().stream().map(Long::parseLong).toList();
         var products = productService.findByIds(result);
-        order.setProducts((List<Product>) products);//todo burada bi degisiklik olabilir!!
+        order.setProducts(products);
         return orderRepostitory.save(order);
     }
 
@@ -52,10 +52,12 @@ public class OrderServiceImpl implements OrderService {
     public Order update(long id, OrderRequestDto input) {
         Order order = findById(id);
         order.setAmaount(input.getAmaount());
-        order.setContact(input.getContact());
+        var contactInfo = contactInfoService.findById(input.getContactId());
+        order.setContact(contactInfo);
         var result = input.getProductIds().stream().map(Long::parseLong).toList();
         var products = productService.findByIds(result);
-        order.setProducts((List<Product>) products);//todo burasi duzenlenecek
+        order.setProducts(products);
         return orderRepostitory.save(order);
     }
+
 }
