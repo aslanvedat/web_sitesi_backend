@@ -1,9 +1,6 @@
 package com.papps.shopping.dto.response;
 
 import com.papps.shopping.entity.ProductInfo;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
 import lombok.Data;
 
 import java.util.Map;
@@ -11,8 +8,7 @@ import java.util.Map;
 @Data
 public class ProductInfoResponseDto {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+
     private long id;
 
     private String name;

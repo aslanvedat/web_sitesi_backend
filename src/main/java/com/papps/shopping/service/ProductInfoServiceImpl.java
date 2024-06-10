@@ -28,7 +28,7 @@ public class ProductInfoServiceImpl implements ProductInfoService {
         ProductInfo productInfo = new ProductInfo();
         productInfo.setName(input.getName());
         productInfo.setBarcode(input.getBarcode());
-        productInfo.setMetaData(input.getMetaData());//todo burasi sorulacak
+        productInfo.setMetaData(input.getMetaData());
         return productInfoRepository.save(productInfo);
     }
 
@@ -50,7 +50,7 @@ public class ProductInfoServiceImpl implements ProductInfoService {
         var productInfo = findById(id);
         productInfo.setName(input.getName());
         productInfo.setBarcode(input.getBarcode());
-        productInfo.setMetaData(input.getMetaData());//todo burasi sorulacak
+        productInfo.setMetaData(input.getMetaData());
         return productInfoRepository.save(productInfo);
     }
 }

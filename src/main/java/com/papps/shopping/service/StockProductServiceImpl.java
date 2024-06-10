@@ -14,6 +14,7 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class StockProductServiceImpl implements StockProductService {
     private final StockProductRepository stockProductRepository;
+    private final ProductInfoService productInfoService;
 
     @Override
     public StockProduct findById(long id) {
@@ -26,7 +27,11 @@ public class StockProductServiceImpl implements StockProductService {
         StockProduct stockProduct = new StockProduct();
         stockProduct.setPrice(input.getPrice());
         stockProduct.setQuantity(input.getQuantity());
-        stockProduct.setProductInfo(input.getProductInfo());//todo burasida daha sonra duzenlenecek
+
+        var result = input.getProductInfoId();
+        var productInfo = productInfoService.findById(result);
+        stockProduct.setProductInfo(productInfo);
+
         return stockProductRepository.save(stockProduct);
     }
 
@@ -48,7 +53,9 @@ public class StockProductServiceImpl implements StockProductService {
         var stockProduct = findById(id);
         stockProduct.setPrice(input.getPrice());
         stockProduct.setQuantity(input.getQuantity());
-        stockProduct.setProductInfo(input.getProductInfo());//todo burasida daha sonra duzenlenecek
+        var result = input.getProductInfo().getId();
+        var productInfo = productInfoService.findById(result);
+        stockProduct.setProductInfo(productInfo);
         return stockProductRepository.save(stockProduct);
     }
 }

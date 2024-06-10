@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.Data;
 import org.hibernate.annotations.SQLDelete;
 
+import java.util.HashMap;
 import java.util.Map;
 
 @Data
@@ -18,7 +19,7 @@ public class ProductInfo {
 
     private String name;
 
-    private Map<String, String> metaData;
-    
+    private Map<String, String> metaData = new HashMap<>();
+
     private String barcode;
 }
