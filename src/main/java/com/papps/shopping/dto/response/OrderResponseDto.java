@@ -3,17 +3,12 @@ package com.papps.shopping.dto.response;
 import com.papps.shopping.entity.ContactInfo;
 import com.papps.shopping.entity.Order;
 import com.papps.shopping.entity.User;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
 import lombok.Data;
 
 import java.util.List;
 
 @Data
 public class OrderResponseDto {
-    @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
     private User user;
     private List<ProductResponseDto> products;
