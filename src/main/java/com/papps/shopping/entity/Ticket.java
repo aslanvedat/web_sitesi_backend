@@ -1,5 +1,6 @@
 package com.papps.shopping.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.papps.shopping.entity.enum_.TicketOptions;
 import com.papps.shopping.entity.enum_.TicketStatus;
 import jakarta.persistence.*;
@@ -15,14 +16,23 @@ public class Ticket {
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private long id;
 
-    Order order;
+    @OneToOne
+    private Order order;
 
     private String Content;
-    OrderProduct orderProduct;
+
+    @OneToOne
+    private OrderProduct orderProduct;
 
     @Enumerated(EnumType.STRING)
     TicketStatus status;
 
     @Enumerated(EnumType.STRING)
     TicketOptions ticketOptions;
+
+    @JsonIgnore
+    private String deletionToken;
+
+    @JsonIgnore
+    private boolean deleted;
 }

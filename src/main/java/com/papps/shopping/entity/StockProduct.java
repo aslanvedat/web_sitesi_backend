@@ -1,5 +1,6 @@
 package com.papps.shopping.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
 import org.hibernate.annotations.SQLDelete;
@@ -14,9 +15,16 @@ public class StockProduct {
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private long id;
 
-    ProductInfo productInfo;
+    @OneToOne
+    private ProductInfo productInfo;
 
     private float price;
 
     private int quantity;
+
+    @JsonIgnore
+    private String deletionToken;
+
+    @JsonIgnore
+    private boolean deleted;
 }

@@ -1,5 +1,6 @@
 package com.papps.shopping.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
 import org.hibernate.annotations.SQLDelete;
@@ -19,7 +20,14 @@ public class ProductInfo {
 
     private String name;
 
+    @ElementCollection
     private Map<String, String> metaData = new HashMap<>();
 
     private String barcode;
+
+    @JsonIgnore
+    private String deletionToken;
+
+    @JsonIgnore
+    private boolean deleted;
 }
