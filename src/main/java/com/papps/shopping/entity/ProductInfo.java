@@ -5,9 +5,6 @@ import jakarta.persistence.*;
 import lombok.Data;
 import org.hibernate.annotations.SQLDelete;
 
-import java.util.HashMap;
-import java.util.Map;
-
 @Data
 @Entity
 @Table(name = "product_info", uniqueConstraints = {@UniqueConstraint(columnNames = {"deleted", "deletion_token"})})
@@ -20,8 +17,8 @@ public class ProductInfo {
 
     private String name;
 
-    @ElementCollection
-    private Map<String, String> metaData = new HashMap<>();
+    @Column(columnDefinition = "TEXT")
+    private String metaData;
 
     private String barcode;
 

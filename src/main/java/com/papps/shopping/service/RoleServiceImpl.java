@@ -2,7 +2,7 @@ package com.papps.shopping.service;
 
 import com.papps.shopping.entity.Role;
 import com.papps.shopping.exception.ApiRequestException;
-import com.papps.shopping.repostory.RoleRepository;
+import com.papps.shopping.repository.RoleRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

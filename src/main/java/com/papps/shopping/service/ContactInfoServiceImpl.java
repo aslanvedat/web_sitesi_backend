@@ -4,7 +4,7 @@ import com.papps.shopping.dto.request.ContactInfoRequestDto;
 import com.papps.shopping.dto.response.ContactInfoResponseDto;
 import com.papps.shopping.entity.ContactInfo;
 import com.papps.shopping.exception.ApiRequestException;
-import com.papps.shopping.repostory.ContactInfoRepository;
+import com.papps.shopping.repository.ContactInfoRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

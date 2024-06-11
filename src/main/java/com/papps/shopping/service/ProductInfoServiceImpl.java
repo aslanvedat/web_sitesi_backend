@@ -4,7 +4,7 @@ import com.papps.shopping.dto.request.ProductInfoRequestDto;
 import com.papps.shopping.dto.response.ProductInfoResponseDto;
 import com.papps.shopping.entity.ProductInfo;
 import com.papps.shopping.exception.ApiRequestException;
-import com.papps.shopping.repostory.ProductInfoRepository;
+import com.papps.shopping.repository.ProductInfoRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

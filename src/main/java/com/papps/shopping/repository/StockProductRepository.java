@@ -1,4 +1,4 @@
-package com.papps.shopping.repostory;
+package com.papps.shopping.repository;
 
 import com.papps.shopping.entity.StockProduct;
 import org.springframework.data.jpa.repository.JpaRepository;

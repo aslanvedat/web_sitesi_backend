@@ -3,8 +3,6 @@ package com.papps.shopping.dto.response;
 import com.papps.shopping.entity.ProductInfo;
 import lombok.Data;
 
-import java.util.Map;
-
 @Data
 public class ProductInfoResponseDto {
 
@@ -13,7 +11,7 @@ public class ProductInfoResponseDto {
 
     private String name;
 
-    private Map<String, String> metaData;
+    private String metaData;
 
     private String barcode;
 

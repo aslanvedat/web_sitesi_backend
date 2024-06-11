@@ -29,13 +29,13 @@ public class ProductInfoController {
         return new ResponseEntity<>(result, HttpStatus.OK);
     }
 
-    @PutMapping("{id}")
+    @PutMapping("/{id}")
     public ResponseEntity<ProductInfo> update(@PathVariable long id, @RequestBody ProductInfoRequestDto input) {
         var result = productInfoService.update(id, input);
         return new ResponseEntity<>(result, HttpStatus.OK);
     }
 
-    @DeleteMapping("{id}")
+    @DeleteMapping("/{id}")
     public ResponseEntity<ProductInfo> delete(@PathVariable long id) {
         var result = productInfoService.delete(id);
         return new ResponseEntity<>(result, HttpStatus.OK);
