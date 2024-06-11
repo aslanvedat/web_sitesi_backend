@@ -29,9 +29,9 @@ public class OrderServiceImpl implements OrderService {
         order.setAmaount(input.getAmaount());
         var contactInfo = contactInfoService.findById(input.getContactId());
         order.setContact(contactInfo);
-        var result = input.getProductIds().stream().map(Long::parseLong).toList();
+      /*  var result = input.getProductIds().stream().map(Long::parseLong).toList();
         var products = productService.findByIds(result);
-        order.setProducts(products);
+        order.setProducts(products);*/
         return orderRepostitory.save(order);
     }
 
@@ -54,9 +54,9 @@ public class OrderServiceImpl implements OrderService {
         order.setAmaount(input.getAmaount());
         var contactInfo = contactInfoService.findById(input.getContactId());
         order.setContact(contactInfo);
-        var result = input.getProductIds().stream().map(Long::parseLong).toList();
+     /*   var result = input.getProductIds().stream().map(Long::parseLong).toList();
         var products = productService.findByIds(result);
-        order.setProducts(products);
+        order.setProducts(products);*/
         return orderRepostitory.save(order);
     }
 

@@ -53,7 +53,7 @@ public class StockProductServiceImpl implements StockProductService {
         var stockProduct = findById(id);
         stockProduct.setPrice(input.getPrice());
         stockProduct.setQuantity(input.getQuantity());
-        var result = input.getProductInfo().getId();
+        var result = input.getProductInfoId();
         var productInfo = productInfoService.findById(result);
         stockProduct.setProductInfo(productInfo);
         return stockProductRepository.save(stockProduct);

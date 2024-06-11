@@ -11,7 +11,12 @@ import org.hibernate.annotations.SQLDelete;
 @Table(name = "ticket", uniqueConstraints = {@UniqueConstraint(columnNames = {"deleted", "deletion_token"})})
 @SQLDelete(sql = "UPDATE ticket SET deleted=true, deletion_token = id WHERE id=?")
 public class Ticket {
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    private long id;
+
     Order order;
+
     private String Content;
     OrderProduct orderProduct;
 

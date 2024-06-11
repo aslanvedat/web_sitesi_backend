@@ -6,8 +6,6 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import org.hibernate.annotations.SQLDelete;
 
-import java.util.List;
-
 @EqualsAndHashCode(callSuper = true)
 @Data
 @Entity
@@ -23,8 +21,8 @@ public class Order extends Auditable {
     @JoinColumn(name = "user_id")
     private User user;
 
-    @OneToMany(cascade = CascadeType.ALL)
-    private List<Product> products;
+/*    @OneToMany(cascade = CascadeType.ALL)
+    private List<Product> products;*/
 
     @OneToOne
     @JoinColumn(name = "contact_id")
