@@ -14,8 +14,8 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class OrderServiceImpl implements OrderService {
     private final OrderRepository orderRepostitory;
-    private final ProductService productService;
     private final ContactInfoService contactInfoService;
+    private final OrderProductService orderProductService;
 
     @Override
     public Order findById(long id) {
@@ -29,9 +29,9 @@ public class OrderServiceImpl implements OrderService {
         order.setAmaount(input.getAmaount());
         var contactInfo = contactInfoService.findById(input.getContactId());
         order.setContact(contactInfo);
-      /*  var result = input.getProductIds().stream().map(Long::parseLong).toList();
-        var products = productService.findByIds(result);
-        order.setProducts(products);*/
+        var result = input.getOrderProductIds().stream().map(Long::parseLong).toList();
+        var products = orderProductService.findByIds(result);
+        order.setOrderProducts(products);
         return orderRepostitory.save(order);
     }
 
@@ -54,9 +54,9 @@ public class OrderServiceImpl implements OrderService {
         order.setAmaount(input.getAmaount());
         var contactInfo = contactInfoService.findById(input.getContactId());
         order.setContact(contactInfo);
-     /*   var result = input.getProductIds().stream().map(Long::parseLong).toList();
-        var products = productService.findByIds(result);
-        order.setProducts(products);*/
+        var result = input.getOrderProductIds().stream().map(Long::parseLong).toList();
+        var products = orderProductService.findByIds(result);
+        order.setOrderProducts(products);
         return orderRepostitory.save(order);
     }
 

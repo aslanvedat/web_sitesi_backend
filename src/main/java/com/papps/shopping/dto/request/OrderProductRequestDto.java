@@ -7,7 +7,7 @@ import lombok.RequiredArgsConstructor;
 @Data
 @RequiredArgsConstructor
 public class OrderProductRequestDto {
-    private long orderId;
+    // private long orderId;
     private long productInfoId;
     private float price;
     private OrderProductStatus status;

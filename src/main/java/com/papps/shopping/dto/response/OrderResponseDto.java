@@ -5,11 +5,13 @@ import com.papps.shopping.entity.Order;
 import com.papps.shopping.entity.User;
 import lombok.Data;
 
+import java.util.List;
+
 @Data
 public class OrderResponseDto {
     private Long id;
     private User user;
-    //  private List<ProductResponseDto> products;
+    private List<OrderProductResponseDto> orderProducts;
     private ContactInfo contact;
     private float amaount;
 
@@ -18,7 +20,7 @@ public class OrderResponseDto {
         this.user = order.getUser();
         this.amaount = order.getAmaount();
         this.contact = order.getContact();
-        //   this.products = order.getProducts().stream().map(ProductResponseDto::new).toList();
+        this.orderProducts = order.getOrderProducts().stream().map(OrderProductResponseDto::new).toList();
     }
 
 

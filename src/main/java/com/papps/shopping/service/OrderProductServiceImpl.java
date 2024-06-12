@@ -8,13 +8,14 @@ import com.papps.shopping.repository.OrderProductRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
 public class OrderProductServiceImpl implements OrderProductService {
     private final OrderProductRepository orderProductRepository;
-    private final OrderService orderService;
+    // private final OrderService orderService;
     private final ProductInfoService productInfoService;
 
     @Override
@@ -24,13 +25,19 @@ public class OrderProductServiceImpl implements OrderProductService {
     }
 
     @Override
+    public List<OrderProduct> findByIds(List<Long> ids) {
+        return orderProductRepository.findAllById(ids);
+    }
+
+
+    @Override
     public OrderProduct save(OrderProductRequestDto input) {
         OrderProduct orderProduct = new OrderProduct();
         orderProduct.setPrice(input.getPrice());
         orderProduct.setStatus(input.getStatus());
-        var result = input.getOrderId();
+ /*       var result = input.getOrderId();
         var order = orderService.findById(result);
-        orderProduct.setOrder(order);
+        orderProduct.setOrder(order);*/
         var result2 = input.getProductInfoId();
         var productInfo = productInfoService.findById(result2);
         orderProduct.setProductInfo(productInfo);
@@ -55,9 +62,9 @@ public class OrderProductServiceImpl implements OrderProductService {
         var orderProduct = findById(id);
         orderProduct.setPrice(input.getPrice());
         orderProduct.setStatus(input.getStatus());
-        var result = input.getOrderId();
+      /*  var result = input.getOrderId();
         var order = orderService.findById(result);
-        orderProduct.setOrder(order);
+        orderProduct.setOrder(order);*/
         var result2 = input.getProductInfoId();
         var productInfo = productInfoService.findById(result2);
         orderProduct.setProductInfo(productInfo);
