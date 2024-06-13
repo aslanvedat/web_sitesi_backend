@@ -11,7 +11,7 @@ public class TicketRequestDto {
 
     private long orderId;
 
-    private String Content;
+    private String content;
 
     private long orderProductId;
 

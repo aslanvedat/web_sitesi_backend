@@ -13,7 +13,7 @@ public class TicketResponseDto {
 
     private Order order;
 
-    private String Content;
+    private String content;
 
     private OrderProduct orderProduct;
 
@@ -24,7 +24,7 @@ public class TicketResponseDto {
     public TicketResponseDto(Ticket ticket) {
         this.id = ticket.getId();
         this.order = ticket.getOrder();
-        this.Content = ticket.getContent();
+        this.content = ticket.getContent();
         this.orderProduct = ticket.getOrderProduct();
         this.status = ticket.getStatus();
         this.ticketOptions = ticket.getTicketOptions();

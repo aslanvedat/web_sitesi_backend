@@ -5,9 +5,8 @@ import lombok.Data;
 
 @Data
 @Entity
-@Table(name = "Role")
+@Table(name = "Role", uniqueConstraints = {@UniqueConstraint(columnNames = {"name"})})
 public class Role {
-
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
