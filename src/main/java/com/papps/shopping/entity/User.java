@@ -51,10 +51,10 @@ public class User extends Auditable {
 
 
     @OneToMany(cascade = CascadeType.ALL)
-    private List<ContactInfo> contacts;//todo one to many
+    private List<ContactInfo> contacts;
 
     @OneToMany(cascade = CascadeType.ALL)
-    private List<Order> orders;//todo one to many
+    private List<Order> orders;
 
 
 }

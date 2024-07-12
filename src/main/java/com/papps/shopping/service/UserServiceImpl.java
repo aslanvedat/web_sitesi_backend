@@ -29,7 +29,6 @@ public class UserServiceImpl implements UserService {
     }
 
 
-    //todo burasi validation  eklendikten sonra duzenlenecek
     @Override
     public UserResponseDto save(UserRequestDto request) {
         if (userRepository.existsByMail(request.getMail())) {
