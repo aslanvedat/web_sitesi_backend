@@ -57,4 +57,8 @@ public class User extends Auditable {
     private List<Order> orders;
 
 
+    @OneToMany(cascade = CascadeType.ALL)
+    private List<Role> roles;
+
+
 }

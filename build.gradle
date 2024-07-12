@@ -23,7 +23,7 @@ repositories {
 
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
-	//implementation 'org.springframework.boot:spring-boot-starter-security'
+	implementation 'org.springframework.boot:spring-boot-starter-security'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	compileOnly 'org.projectlombok:lombok'
 	developmentOnly 'org.springframework.boot:spring-boot-devtools'
@@ -34,6 +34,12 @@ dependencies {
 	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
 	implementation group: 'org.hibernate', name: 'hibernate-validator', version: '8.0.1.Final'
 
+	def JWT_VERSION = '0.12.6'
+	implementation "io.jsonwebtoken:jjwt-api:${JWT_VERSION}"
+	implementation "io.jsonwebtoken:impl:${JWT_VERSION}"
+	implementation "io.jsonwebtoken:jackson:${JWT_VERSION}"
+
+	implementation 'org.apache.commons:commons-lang3:3.14.0'
 }
 
 tasks.named('test') {
