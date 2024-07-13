@@ -3,7 +3,6 @@ package com.papps.shopping.entity;
 import com.papps.shopping.entity.enum_.OrderProductStatus;
 import jakarta.persistence.*;
 import lombok.Data;
-import org.hibernate.annotations.SQLDelete;
 
 @Data
 @Entity
@@ -22,5 +21,8 @@ public class OrderProduct {
 
     @Enumerated(EnumType.STRING)
     private OrderProductStatus status;
+
+    @ManyToOne()
+    private User user;
 
 }
