@@ -39,7 +39,10 @@ public class SecurityConfig {
                 .authorizeHttpRequests(request -> request
                         .requestMatchers("/auth/**")
                         .permitAll()
-                        .requestMatchers("/stock/**").hasAuthority(Constants.ROLES.ROLE_ADMIN)
+                        .requestMatchers("/user/**", "/role/**").hasAuthority(Constants.ROLES.ROLE_SUPER_ADMIN)
+                        .requestMatchers("/stockProduct/**", "/productInfo/**").hasAuthority(Constants.ROLES.ROLE_ADMIN)//todo buraya bak
+                        .requestMatchers("/order/**", "/orderProduct/**", "/contactInfo/**").hasAuthority(Constants.ROLES.ROLE_USER)
+
                         .anyRequest()
                         .authenticated())
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
@@ -52,7 +55,6 @@ public class SecurityConfig {
     public AuthenticationManager authenticationManager(AuthenticationConfiguration configuration) throws Exception {
         return configuration.getAuthenticationManager();
     }
-
 
 
 }
