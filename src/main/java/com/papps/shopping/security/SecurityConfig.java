@@ -42,7 +42,6 @@ public class SecurityConfig {
                         .requestMatchers("/user/**", "/role/**").hasAuthority(Constants.ROLES.ROLE_SUPER_ADMIN)
                         .requestMatchers("/stockProduct/**", "/productInfo/**").hasAuthority(Constants.ROLES.ROLE_ADMIN)//todo buraya bak
                         .requestMatchers("/order/**", "/orderProduct/**", "/contactInfo/**").hasAuthority(Constants.ROLES.ROLE_USER)
-
                         .anyRequest()
                         .authenticated())
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))

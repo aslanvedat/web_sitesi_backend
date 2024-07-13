@@ -24,10 +24,15 @@ public class UserServiceImpl implements UserService {
     @Override
     public User findById(long id) {
         Optional<User> userOptional = userRepository.findById(id);
-
         return userOptional.orElseThrow(() -> new ApiRequestException("user is not found"));
     }
 
+
+    @Override
+    public User findByEmail(String email) {
+        Optional<User> userOptional = userRepository.findByMail(email);
+        return userOptional.orElseThrow(() -> new ApiRequestException("user is not found"));
+    }
 
     @Override
     public UserResponseDto save(UserRequestDto request) {

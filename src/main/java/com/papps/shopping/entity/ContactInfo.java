@@ -38,4 +38,7 @@ public class ContactInfo extends Auditable {
 
     @JsonIgnore
     private boolean deleted;
+
+    @ManyToOne()
+    private User user;
 }
