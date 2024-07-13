@@ -18,6 +18,7 @@ import java.util.Optional;
 public class ContactInfoServiceImpl implements ContactInfoService {
     private final ContactInfoRepository contactInfoRepository;
     private final UserService userService;
+
     @Override
     public ContactInfo findById(long id) {
         Optional<ContactInfo> contactInfo = contactInfoRepository.findById(id);
@@ -46,12 +47,20 @@ public class ContactInfoServiceImpl implements ContactInfoService {
     @Override
     public ContactInfoResponseDto viewContactInfo(long id) { // todo current user check eklenecek
         var result = findById(id);
+        UserPrincipal currentUser = UserContext.getCurrentUser();
+        if (!result.getUser().getName().equals(currentUser.getName())) {
+            throw new ApiRequestException("you can only view your own contact info");
+        }
         return new ContactInfoResponseDto(result);
     }
 
     @Override
     public ContactInfo deleteById(long id) {
         var result = findById(id); // todo current user check eklenecek
+        UserPrincipal currentUser = UserContext.getCurrentUser();
+        if (!result.getUser().getName().equals(currentUser.getName())) {
+            throw new ApiRequestException("You can only delete your own contact info");
+        }
         contactInfoRepository.delete(result);
         return result;
     }
@@ -61,8 +70,8 @@ public class ContactInfoServiceImpl implements ContactInfoService {
         var contactInfo = findById(id);
 
         UserPrincipal currentUser = UserContext.getCurrentUser();
-        if(!contactInfo.getUser().getName().equals(currentUser.getName())) {
-            throw new ApiRequestException("You're only updated own contact info");
+        if (!contactInfo.getUser().getName().equals(currentUser.getName())) {
+            throw new ApiRequestException("You're only updated your own contact info");
         }
 
         contactInfo.setName(contactInfoRequestDto.getName());
