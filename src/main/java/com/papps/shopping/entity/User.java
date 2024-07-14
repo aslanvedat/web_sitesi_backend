@@ -7,6 +7,8 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import org.hibernate.annotations.SQLDelete;
 
+import java.util.Collection;
+import java.util.LinkedList;
 import java.util.List;
 
 @EqualsAndHashCode(callSuper = true)
@@ -22,6 +24,8 @@ public class User extends Auditable {
 
     private String name;
 
+    @ManyToMany()
+    private Collection<Role> roles = new LinkedList<>();
 
     private String mail;
 
@@ -32,6 +36,14 @@ public class User extends Auditable {
 
     @JsonIgnore
     private boolean deleted;
+
+
+    @OneToMany(cascade = CascadeType.ALL)
+    private List<ContactInfo> contacts;
+
+    @OneToMany(cascade = CascadeType.ALL)
+    private List<Order> orders;
+
 
     public User() {
 
@@ -48,17 +60,4 @@ public class User extends Auditable {
         this.mail = mail;
         this.password = password;
     }
-
-
-    @OneToMany(cascade = CascadeType.ALL)
-    private List<ContactInfo> contacts;
-
-    @OneToMany(cascade = CascadeType.ALL)
-    private List<Order> orders;
-
-
-    @OneToMany(cascade = CascadeType.ALL)
-    private List<Role> roles;
-
-
 }

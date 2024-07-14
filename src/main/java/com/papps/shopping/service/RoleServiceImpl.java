@@ -41,4 +41,10 @@ public class RoleServiceImpl implements RoleService {
 
         return result;
     }
+
+    @Override
+    public Role findByName(String name) {
+        var role = repository.findByName(name);
+        return role.orElseThrow(() -> new RuntimeException("role not found"));
+    }
 }

@@ -2,9 +2,11 @@ package com.papps.shopping.service;
 
 import com.papps.shopping.dto.request.UserRequestDto;
 import com.papps.shopping.dto.response.UserResponseDto;
+import com.papps.shopping.entity.Role;
 import com.papps.shopping.entity.User;
 import com.papps.shopping.exception.ApiRequestException;
 import com.papps.shopping.repository.UserRepository;
+import com.papps.shopping.share.Constants;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -15,6 +17,7 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class UserServiceImpl implements UserService {
     private final UserRepository userRepository;
+    private final RoleService roleService;
 
     @Override
     public Collection<User> findAll() {
@@ -36,14 +39,15 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public UserResponseDto save(UserRequestDto request) {
+        Role role = roleService.findByName(Constants.ROLES.ROLE_USER);
         if (userRepository.existsByMail(request.getMail())) {
             throw new ApiRequestException("this user already exist!");
-
         }
         if (!request.getPassword().equals(request.getPasswordTekrar())) {
             throw new ApiRequestException("this password cannot match");
         }
         var theUser = new User(request);
+        theUser.getRoles().add(role);
         var savedUser = userRepository.save(theUser);
         return new UserResponseDto(savedUser);
     }
