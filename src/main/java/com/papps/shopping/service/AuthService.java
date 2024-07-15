@@ -19,7 +19,6 @@ public class AuthService {
 
     private final AuthenticationManager authenticationManager;
     private final JpaUserService jpaUserDetailsService;
-
     private final JwtUtils jwtUtils;
 
     public String authenticate(AuthRequestDto request) {

@@ -37,7 +37,7 @@ dependencies {
 	def JWT_VERSION = '0.12.6'
 	implementation "io.jsonwebtoken:jjwt-api:${JWT_VERSION}"
 	implementation "io.jsonwebtoken:jjwt-impl:${JWT_VERSION}"
-
+	implementation "io.jsonwebtoken:jjwt-jackson:${JWT_VERSION}"
 }
 
 tasks.named('test') {

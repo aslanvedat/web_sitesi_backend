@@ -8,6 +8,7 @@ import com.papps.shopping.exception.ApiRequestException;
 import com.papps.shopping.repository.UserRepository;
 import com.papps.shopping.share.Constants;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.Collection;
@@ -18,6 +19,7 @@ import java.util.Optional;
 public class UserServiceImpl implements UserService {
     private final UserRepository userRepository;
     private final RoleService roleService;
+    private final PasswordEncoder passwordEncoder;
 
     @Override
     public Collection<User> findAll() {
@@ -40,15 +42,13 @@ public class UserServiceImpl implements UserService {
     @Override
     public UserResponseDto save(UserRequestDto request) {
         Role role = roleService.findByName(Constants.ROLES.ROLE_USER);
-        if (userRepository.existsByMail(request.getMail())) {
-            throw new ApiRequestException("this user already exist!");
-        }
         if (!request.getPassword().equals(request.getPasswordTekrar())) {
             throw new ApiRequestException("this password cannot match");
         }
         var theUser = new User(request);
         theUser.getRoles().add(role);
-        var savedUser = userRepository.save(theUser);
+
+        var savedUser = this.save(theUser);
         return new UserResponseDto(savedUser);
     }
 
@@ -57,6 +57,7 @@ public class UserServiceImpl implements UserService {
         if (userRepository.existsByMail(user.getMail())) {
             throw new ApiRequestException("this user already exist!");
         }
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
         return userRepository.save(user);
     }
 
