@@ -24,7 +24,7 @@ public class User extends Auditable {
 
     private String name;
 
-    @ManyToMany()
+    @ManyToMany( fetch = FetchType.EAGER)
     private Collection<Role> roles = new LinkedList<>();
 
     private String mail;

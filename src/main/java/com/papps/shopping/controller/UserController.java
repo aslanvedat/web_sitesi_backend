@@ -1,4 +1,5 @@
 package com.papps.shopping.controller;
+
 import com.papps.shopping.dto.request.UserRequestDto;
 import com.papps.shopping.dto.response.UserResponseDto;
 import com.papps.shopping.entity.User;
@@ -20,26 +21,29 @@ public class UserController {
 
 
     @GetMapping("/")
-    public Collection<User>findAll(){return userService.findAll();}
+    public Collection<User> findAll() {
+        return userService.findAll();
+    }
 
 
     @CrossOrigin//buna bakacam
     @PostMapping("/")
-public ResponseEntity<UserResponseDto> save(@Valid @RequestBody UserRequestDto userRequestDto)//requestbody onune valid gelebilir
+    public ResponseEntity<UserResponseDto> save(@Valid @RequestBody UserRequestDto userRequestDto)//requestbody onune valid gelebilir
     {
-var saveUser=userService.save(userRequestDto);
-return  new ResponseEntity<>(saveUser, HttpStatus.CREATED);
+        var saveUser = userService.save(userRequestDto);
+        return new ResponseEntity<>(saveUser, HttpStatus.CREATED);
     }
 
     @DeleteMapping("/{user_id}")
-    public ResponseEntity<UserResponseDto> delete(@PathVariable long user_id ) {
-        var deletedUser=userService.deleteById(user_id);
-        return  new ResponseEntity<>(deletedUser,HttpStatus.OK);
+    public ResponseEntity<UserResponseDto> delete(@PathVariable long user_id) {
+        var deletedUser = userService.deleteById(user_id);
+        return new ResponseEntity<>(deletedUser, HttpStatus.OK);
     }
+
     @PutMapping("/{user_id}")
-    public ResponseEntity<UserResponseDto>update(@PathVariable long user_id,@RequestBody UserRequestDto userRequestDto) {
-        var updateUser=userService.update(user_id,userRequestDto);
-        return new ResponseEntity<>(updateUser,HttpStatus.OK);
+    public ResponseEntity<UserResponseDto> update(@PathVariable long user_id, @RequestBody UserRequestDto userRequestDto) {
+        var updateUser = userService.update(user_id, userRequestDto);
+        return new ResponseEntity<>(updateUser, HttpStatus.OK);
 
     }
 
