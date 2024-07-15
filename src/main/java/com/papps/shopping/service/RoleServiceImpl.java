@@ -7,6 +7,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.Collection;
+import java.util.List;
 
 @RequiredArgsConstructor
 @Service
@@ -46,5 +47,11 @@ public class RoleServiceImpl implements RoleService {
     public Role findByName(String name) {
         var role = repository.findByName(name);
         return role.orElseThrow(() -> new RuntimeException("role not found"));
+    }
+
+    @Override
+    public List<Role> findAll() {
+        return repository.findAll();
+
     }
 }

@@ -2,6 +2,7 @@ package com.papps.shopping.security;
 
 import com.papps.shopping.share.Constants;
 import jakarta.servlet.FilterChain;
+import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
@@ -27,6 +28,12 @@ public class JwtAuthFilter extends OncePerRequestFilter {
     private final JpaUserService jpaUserService;
     private final JwtUtils jwtUtils;
 
+
+    @Override
+    protected boolean shouldNotFilter(HttpServletRequest request) throws ServletException {
+        var uri = request.getRequestURI();
+        return uri.startsWith("/api/auth");
+    }
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response,
